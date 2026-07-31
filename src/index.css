@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Dark Theme Default */
+    --bg-primary: #0A0E14;
+    --bg-surface: #141A24;
+    --bg-surface-hover: #1D2636;
+    --text-primary: #F8FAFC;
+    --text-secondary: #94A3B8;
+    --text-muted: #64748B;
+    --accent: #38BDF8;
+    --accent-dark: #0284C7;
+    --accent-glow: rgba(56, 189, 248, 0.22);
+    --border-subtle: rgba(255, 255, 255, 0.08);
+    --border-highlight: rgba(56, 189, 248, 0.4);
+    --card-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5);
+    
+    --chart-grid: rgba(255, 255, 255, 0.05);
+    --chart-text: #94A3B8;
+    --chart-tooltip-bg: #141A24;
+    --chart-tooltip-border: rgba(56, 189, 248, 0.3);
+  }
+
+  html.light {
+    /* Light Theme Overrides */
+    --bg-primary: #F7F8FA;
+    --bg-surface: #FFFFFF;
+    --bg-surface-hover: #F1F5F9;
+    --text-primary: #0F172A;
+    --text-secondary: #475569;
+    --text-muted: #64748B;
+    --accent: #0284C7;
+    --accent-dark: #0369A1;
+    --accent-glow: rgba(2, 132, 199, 0.12);
+    --border-subtle: rgba(0, 0, 0, 0.08);
+    --border-highlight: rgba(2, 132, 199, 0.35);
+    --card-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.06);
+
+    --chart-grid: rgba(0, 0, 0, 0.06);
+    --chart-text: #475569;
+    --chart-tooltip-bg: #FFFFFF;
+    --chart-tooltip-border: rgba(2, 132, 199, 0.3);
+  }
+
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+/* Glassmorphism & Custom Card Utility Classes */
+.bi-card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--card-shadow);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bi-card:hover {
+  border-color: var(--border-highlight);
+}
+
+.bi-card-glow {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-highlight);
+  box-shadow: 0 0 25px -5px var(--accent-glow);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-subtle);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* Leaflet Map Custom Overrides */
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  border-radius: 0.75rem;
+  background-color: var(--bg-surface) !important;
+}
+
+.leaflet-popup-content-wrapper {
+  background-color: var(--bg-surface) !important;
+  color: var(--text-primary) !important;
+  border: 1px solid var(--border-highlight);
+  border-radius: 0.75rem !important;
+  box-shadow: var(--card-shadow) !important;
+}
+
+.leaflet-popup-tip {
+  background-color: var(--bg-surface) !important;
+}

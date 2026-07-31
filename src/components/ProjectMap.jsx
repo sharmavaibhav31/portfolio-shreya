@@ -5,16 +5,14 @@ import { useTheme } from '../context/ThemeContext';
 import { mapLocations } from '../data/portfolioData';
 import { Globe, MapPin, ExternalLink, Compass } from 'lucide-react';
 
-// Custom DOM marker with pulsing ring
 const createCustomIcon = (isDark) => {
-  const accentColor = isDark ? '#38BDF8' : '#0284C7';
-  const bgColor = isDark ? '#141A24' : '#FFFFFF';
+  const accentColor = isDark ? '#F59E0B' : '#D97706';
+  const bgColor = isDark ? '#1C1917' : '#FFFFFF';
 
   return L.divIcon({
     className: 'custom-leaflet-marker',
     html: `
-      <div style="position: relative; width: 36px; height: 36px; display: flex; items-center; justify-content: center;">
-        <!-- Pulsing Ring -->
+      <div style="position: relative; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;">
         <div style="
           position: absolute;
           inset: -4px;
@@ -23,7 +21,6 @@ const createCustomIcon = (isDark) => {
           opacity: 0.6;
           animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
         "></div>
-        <!-- Marker Pin -->
         <div style="
           width: 28px;
           height: 28px;
@@ -70,15 +67,20 @@ export default function ProjectMap() {
   };
 
   return (
-    <section id="map" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-      {/* Eyebrow Label & Section Header */}
+    <section id="map" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative overflow-hidden">
+      {/* Background Section Watermark Anchor */}
+      <span className="absolute top-10 right-6 text-9xl font-heading font-black text-textPrimary/5 select-none pointer-events-none -z-10">
+        06
+      </span>
+
+      {/* Eyebrow Label & Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-4 border-b border-borderSubtle">
         <div>
           <div className="inline-flex items-center gap-2 text-accent font-mono text-xs font-semibold uppercase tracking-wider mb-1">
             <Globe className="w-3.5 h-3.5" />
             <span>06 // GEOSPATIAL DISTRIBUTION</span>
           </div>
-          <h2 className="text-2xl sm:text-4xl font-heading font-extrabold text-textPrimary tracking-tight">
+          <h2 className="text-3xl sm:text-5xl font-heading font-extrabold text-textPrimary tracking-tight">
             Geographic Footprint & Work Locations
           </h2>
         </div>
@@ -87,9 +89,9 @@ export default function ProjectMap() {
         </p>
       </div>
 
-      {/* Map Card Wrapper */}
-      <div className="bi-card rounded-2xl p-4 sm:p-6 overflow-hidden">
-        <div className="h-[420px] w-full rounded-xl overflow-hidden relative z-0">
+      {/* Map Card */}
+      <div className="bi-card rounded-3xl p-4 sm:p-6 overflow-hidden">
+        <div className="h-[420px] w-full rounded-2xl overflow-hidden relative z-0">
           <MapContainer
             center={[20.5937, 78.9629]}
             zoom={5}
@@ -143,16 +145,16 @@ export default function ProjectMap() {
           {mapLocations.map((loc) => (
             <div
               key={loc.id}
-              className="p-3 rounded-lg bg-bgPrimary/60 border border-borderSubtle flex items-start gap-2.5"
+              className="p-3.5 rounded-xl bg-bgPrimary/80 border border-borderSubtle flex items-start gap-3"
             >
-              <div className="p-1.5 rounded bg-accent/10 text-accent shrink-0 mt-0.5">
-                <Compass className="w-3.5 h-3.5" />
+              <div className="p-2 rounded-lg bg-accent/10 text-accent shrink-0 mt-0.5">
+                <Compass className="w-4 h-4" />
               </div>
               <div>
                 <span className="text-xs font-heading font-bold text-textPrimary block">
                   {loc.name}
                 </span>
-                <span className="text-[11px] font-mono text-accent block">
+                <span className="text-[11px] font-mono text-accent block mt-0.5">
                   {loc.role}
                 </span>
               </div>

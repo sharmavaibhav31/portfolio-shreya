@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { personalDetails } from '../data/portfolioData';
-import { Mail, Send, MapPin, CheckCircle, BarChart2, Heart } from 'lucide-react';
+import { Mail, Send, CheckCircle, Terminal, Cpu, ArrowUpRight } from 'lucide-react';
 
 const GithubIcon = ({ className = "w-4 h-4" }) => (
   <svg className={className} fill="currentColor" viewBox="0 0 24 24">
@@ -26,13 +26,13 @@ export default function ContactFooter() {
 
   const validate = () => {
     const errs = {};
-    if (!formData.name.trim()) errs.name = 'Name is required';
+    if (!formData.name.trim()) errs.name = 'NAME_REQUIRED';
     if (!formData.email.trim()) {
-      errs.email = 'Email is required';
+      errs.email = 'EMAIL_REQUIRED';
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      errs.email = 'Invalid email format';
+      errs.email = 'INVALID_EMAIL_FORMAT';
     }
-    if (!formData.message.trim()) errs.message = 'Message is required';
+    if (!formData.message.trim()) errs.message = 'MESSAGE_REQUIRED';
     return errs;
   };
 
@@ -46,23 +46,27 @@ export default function ContactFooter() {
 
     setErrors({});
     setSubmitted(true);
-    // Reset form after short delay
     setTimeout(() => {
       setFormData({ name: '', email: '', subject: '', message: '' });
     }, 2000);
   };
 
   return (
-    <footer id="contact" className="pt-16 pb-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-      {/* Section Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 pb-4 border-b border-borderSubtle">
+    <footer id="contact" className="pt-20 pb-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative overflow-hidden">
+      {/* Background Section Watermark Anchor */}
+      <span className="absolute top-10 right-6 text-9xl font-heading font-black text-textPrimary/5 select-none pointer-events-none -z-10">
+        07
+      </span>
+
+      {/* Eyebrow Label & Header */}
+      <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 pb-4 border-b border-borderSubtle">
         <div>
           <div className="inline-flex items-center gap-2 text-accent font-mono text-xs font-semibold uppercase tracking-wider mb-1">
             <Mail className="w-3.5 h-3.5" />
             <span>07 // INITIATE PIPELINE</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-textPrimary tracking-tight">
-            Get In Touch
+          <h2 className="text-3xl sm:text-5xl font-heading font-extrabold text-textPrimary tracking-tight">
+            Connect & Query Console
           </h2>
         </div>
         <p className="text-textMuted text-xs sm:text-sm font-mono mt-2 md:mt-0">
@@ -71,162 +75,176 @@ export default function ContactFooter() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16">
-        {/* Left Column: Contact Links & Info (5 Cols) */}
+        {/* Left Column: Direct Links */}
         <div className="lg:col-span-5 space-y-6">
-          <div className="bi-card rounded-2xl p-6 space-y-6">
-            <h3 className="text-lg font-heading font-bold text-textPrimary">
-              Let's Connect & Collaborate
+          <div className="bi-card rounded-3xl p-6 sm:p-8 space-y-6">
+            <div className="flex items-center gap-2 text-accent font-mono text-xs font-bold uppercase">
+              <Terminal className="w-4 h-4" />
+              <span>COMMUNICATION CHANNELS</span>
+            </div>
+
+            <h3 className="text-2xl font-heading font-extrabold text-textPrimary">
+              Let's Build Data Solutions Together
             </h3>
 
             <p className="text-textSecondary text-sm leading-relaxed">
-              I am actively looking for Data Analyst and Data Science opportunities. Whether you have a project, an internship opening, or just want to talk about data pipelines, reach out!
+              Actively seeking Data Analyst and Data Science opportunities. Whether you have a project, an internship opening, or just want to discuss ML models and BI pipelines, let's talk.
             </p>
 
             <div className="space-y-4 pt-2">
               <a
                 href={`mailto:${personalDetails.email}`}
-                className="flex items-center gap-3.5 p-3 rounded-xl bg-bgPrimary hover:bg-bgSurfaceHover border border-borderSubtle hover:border-accent/40 transition-all duration-200 group"
+                className="flex items-center gap-4 p-4 rounded-2xl bg-bgPrimary/80 hover:bg-bgSurfaceHover border border-borderSubtle hover:border-accent/50 transition-all duration-200 group focus-visible:ring-2 focus-visible:ring-accent"
               >
-                <div className="p-2.5 rounded-lg bg-accent/10 text-accent group-hover:scale-105 transition-transform">
-                  <Mail className="w-4 h-4" />
+                <div className="p-3 rounded-xl bg-accent/10 text-accent group-hover:scale-105 transition-transform">
+                  <Mail className="w-5 h-5" />
                 </div>
-                <div className="overflow-hidden">
-                  <span className="text-[10px] font-mono text-textMuted uppercase block">Direct Email</span>
+                <div className="overflow-hidden flex-1">
+                  <span className="text-[10px] font-mono text-textMuted uppercase font-bold block">DIRECT EMAIL</span>
                   <span className="text-xs sm:text-sm font-mono text-textPrimary group-hover:text-accent truncate block">
                     {personalDetails.email}
                   </span>
                 </div>
+                <ArrowUpRight className="w-4 h-4 text-textMuted group-hover:text-accent group-hover:translate-x-0.5 transition-transform" />
               </a>
 
               <a
                 href={personalDetails.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3.5 p-3 rounded-xl bg-bgPrimary hover:bg-bgSurfaceHover border border-borderSubtle hover:border-accent/40 transition-all duration-200 group"
+                className="flex items-center gap-4 p-4 rounded-2xl bg-bgPrimary/80 hover:bg-bgSurfaceHover border border-borderSubtle hover:border-accent/50 transition-all duration-200 group focus-visible:ring-2 focus-visible:ring-accent"
               >
-                <div className="p-2.5 rounded-lg bg-sky-500/10 text-sky-500 group-hover:scale-105 transition-transform">
-                  <LinkedinIcon className="w-4 h-4" />
+                <div className="p-3 rounded-xl bg-accent/10 text-accent group-hover:scale-105 transition-transform">
+                  <LinkedinIcon className="w-5 h-5" />
                 </div>
-                <div>
-                  <span className="text-[10px] font-mono text-textMuted uppercase block">LinkedIn Profile</span>
-                  <span className="text-xs sm:text-sm font-mono text-textPrimary group-hover:text-accent block">
+                <div className="overflow-hidden flex-1">
+                  <span className="text-[10px] font-mono text-textMuted uppercase font-bold block">LINKEDIN PROFILE</span>
+                  <span className="text-xs sm:text-sm font-mono text-textPrimary group-hover:text-accent truncate block">
                     linkedin.com/in/shreya-mishra-analytics
                   </span>
                 </div>
+                <ArrowUpRight className="w-4 h-4 text-textMuted group-hover:text-accent group-hover:translate-x-0.5 transition-transform" />
               </a>
 
               <a
                 href={personalDetails.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3.5 p-3 rounded-xl bg-bgPrimary hover:bg-bgSurfaceHover border border-borderSubtle hover:border-accent/40 transition-all duration-200 group"
+                className="flex items-center gap-4 p-4 rounded-2xl bg-bgPrimary/80 hover:bg-bgSurfaceHover border border-borderSubtle hover:border-accent/50 transition-all duration-200 group focus-visible:ring-2 focus-visible:ring-accent"
               >
-                <div className="p-2.5 rounded-lg bg-emerald-500/10 text-emerald-500 group-hover:scale-105 transition-transform">
-                  <GithubIcon className="w-4 h-4" />
+                <div className="p-3 rounded-xl bg-accentSecondary/15 text-accentSecondary group-hover:scale-105 transition-transform">
+                  <GithubIcon className="w-5 h-5" />
                 </div>
-                <div>
-                  <span className="text-[10px] font-mono text-textMuted uppercase block">GitHub Repositories</span>
-                  <span className="text-xs sm:text-sm font-mono text-textPrimary group-hover:text-accent block">
+                <div className="overflow-hidden flex-1">
+                  <span className="text-[10px] font-mono text-textMuted uppercase font-bold block">GITHUB REPOSITORIES</span>
+                  <span className="text-xs sm:text-sm font-mono text-textPrimary group-hover:text-accent truncate block">
                     github.com/shreyamishra-sudo
                   </span>
                 </div>
+                <ArrowUpRight className="w-4 h-4 text-textMuted group-hover:text-accent group-hover:translate-x-0.5 transition-transform" />
               </a>
             </div>
           </div>
         </div>
 
-        {/* Right Column: Contact Form (7 Cols) */}
+        {/* Right Column: Query Console Form */}
         <div className="lg:col-span-7">
-          <div className="bi-card rounded-2xl p-6 sm:p-8">
-            <h3 className="text-lg font-heading font-bold text-textPrimary mb-6">
-              Send a Direct Message
-            </h3>
+          <div className="bi-card rounded-3xl p-6 sm:p-8">
+            <div className="flex items-center justify-between mb-6 pb-3 border-b border-borderSubtle">
+              <div className="flex items-center gap-2 text-xs font-mono font-bold text-accent uppercase">
+                <Cpu className="w-4 h-4" />
+                <span>QUERY CONSOLE // TRANSMIT MESSAGE</span>
+              </div>
+              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-500 font-bold">
+                ENCRYPTED INPUT
+              </span>
+            </div>
 
             {submitted ? (
-              <div className="p-6 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-center space-y-3">
-                <CheckCircle className="w-10 h-10 text-emerald-500 mx-auto animate-bounce" />
-                <h4 className="text-lg font-heading font-bold text-textPrimary">Message Sent Successfully!</h4>
-                <p className="text-sm text-textSecondary font-mono">
-                  Thank you for reaching out. I'll get back to your email shortly.
+              <div className="p-8 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-center space-y-4">
+                <CheckCircle className="w-12 h-12 text-emerald-500 mx-auto animate-bounce" />
+                <h4 className="text-xl font-heading font-extrabold text-textPrimary">QUERY TRANSMITTED SUCCESSFULLY!</h4>
+                <p className="text-sm text-textSecondary font-mono leading-relaxed">
+                  Thank you for connecting. Your message payload has been recorded and I will respond to your email shortly.
                 </p>
                 <button
                   onClick={() => setSubmitted(false)}
-                  className="mt-4 px-4 py-2 rounded-lg bg-bgSurface hover:bg-bgSurfaceHover border border-borderSubtle text-xs font-mono text-accent"
+                  className="mt-4 px-5 py-2.5 rounded-xl bg-bgSurface hover:bg-bgSurfaceHover border border-borderSubtle text-xs font-mono text-accent font-bold"
                 >
-                  Send Another Message
+                  Transmit Another Message
                 </button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-mono text-textMuted mb-1 uppercase">
-                      Your Name *
+                    <label className="block text-xs font-mono text-textMuted mb-1.5 uppercase font-bold">
+                      // SENDER NAME *
                     </label>
                     <input
                       type="text"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       placeholder="Jane Doe"
-                      className={`w-full px-4 py-2.5 rounded-xl bg-bgPrimary border text-sm text-textPrimary placeholder:text-textMuted focus:outline-none focus:ring-2 focus:ring-accent/50 ${
+                      className={`w-full px-4 py-3 rounded-xl bg-bgPrimary border text-sm font-mono text-textPrimary placeholder:text-textMuted focus:outline-none focus:ring-2 focus:ring-accent ${
                         errors.name ? 'border-red-500' : 'border-borderSubtle'
                       }`}
                     />
-                    {errors.name && <span className="text-[11px] font-mono text-red-500 mt-1 block">{errors.name}</span>}
+                    {errors.name && <span className="text-[11px] font-mono text-red-500 mt-1 block">ERR: {errors.name}</span>}
                   </div>
 
                   <div>
-                    <label className="block text-xs font-mono text-textMuted mb-1 uppercase">
-                      Your Email *
+                    <label className="block text-xs font-mono text-textMuted mb-1.5 uppercase font-bold">
+                      // SENDER EMAIL *
                     </label>
                     <input
                       type="email"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      placeholder="jane@example.com"
-                      className={`w-full px-4 py-2.5 rounded-xl bg-bgPrimary border text-sm text-textPrimary placeholder:text-textMuted focus:outline-none focus:ring-2 focus:ring-accent/50 ${
+                      placeholder="jane@company.com"
+                      className={`w-full px-4 py-3 rounded-xl bg-bgPrimary border text-sm font-mono text-textPrimary placeholder:text-textMuted focus:outline-none focus:ring-2 focus:ring-accent ${
                         errors.email ? 'border-red-500' : 'border-borderSubtle'
                       }`}
                     />
-                    {errors.email && <span className="text-[11px] font-mono text-red-500 mt-1 block">{errors.email}</span>}
+                    {errors.email && <span className="text-[11px] font-mono text-red-500 mt-1 block">ERR: {errors.email}</span>}
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-mono text-textMuted mb-1 uppercase">
-                    Subject / Project Context
+                  <label className="block text-xs font-mono text-textMuted mb-1.5 uppercase font-bold">
+                    // SUBJECT / QUERY TYPE
                   </label>
                   <input
                     type="text"
                     value={formData.subject}
                     onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                    placeholder="Data Analyst Opportunity / Collaboration"
-                    className="w-full px-4 py-2.5 rounded-xl bg-bgPrimary border border-borderSubtle text-sm text-textPrimary placeholder:text-textMuted focus:outline-none focus:ring-2 focus:ring-accent/50"
+                    placeholder="Data Analyst Position / ML Project Collaboration"
+                    className="w-full px-4 py-3 rounded-xl bg-bgPrimary border border-borderSubtle text-sm font-mono text-textPrimary placeholder:text-textMuted focus:outline-none focus:ring-2 focus:ring-accent"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-mono text-textMuted mb-1 uppercase">
-                    Message *
+                  <label className="block text-xs font-mono text-textMuted mb-1.5 uppercase font-bold">
+                    // MESSAGE PAYLOAD *
                   </label>
                   <textarea
                     rows={4}
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    placeholder="Hello Shreya, I would love to discuss a Data Analytics opportunity..."
-                    className={`w-full px-4 py-2.5 rounded-xl bg-bgPrimary border text-sm text-textPrimary placeholder:text-textMuted focus:outline-none focus:ring-2 focus:ring-accent/50 ${
+                    placeholder="Hello Shreya, we would love to invite you for a Data Analytics role..."
+                    className={`w-full px-4 py-3 rounded-xl bg-bgPrimary border text-sm font-mono text-textPrimary placeholder:text-textMuted focus:outline-none focus:ring-2 focus:ring-accent ${
                       errors.message ? 'border-red-500' : 'border-borderSubtle'
                     }`}
                   />
-                  {errors.message && <span className="text-[11px] font-mono text-red-500 mt-1 block">{errors.message}</span>}
+                  {errors.message && <span className="text-[11px] font-mono text-red-500 mt-1 block">ERR: {errors.message}</span>}
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full py-3 rounded-xl bg-accent text-white font-medium text-sm hover:bg-accent-dark transition-all duration-200 shadow-lg shadow-accent/25 flex items-center justify-center gap-2"
+                  className="w-full py-3.5 rounded-xl bg-accent text-white font-mono font-bold text-sm hover:bg-accent-dark transition-all duration-200 shadow-lg shadow-accent/25 flex items-center justify-center gap-2 focus-visible:ring-2 focus-visible:ring-accent"
                 >
                   <Send className="w-4 h-4" />
-                  <span>Send Message</span>
+                  <span>TRANSMIT QUERY PAYLOAD</span>
                 </button>
               </form>
             )}
@@ -237,12 +255,13 @@ export default function ContactFooter() {
       {/* Bottom Footer Line */}
       <div className="pt-8 border-t border-borderSubtle flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-textMuted">
         <div className="flex items-center gap-2">
-          <BarChart2 className="w-4 h-4 text-accent" />
-          <span>© {new Date().getFullYear()} Shreya Mishra. Designed as a Live BI Dashboard.</span>
+          <Terminal className="w-4 h-4 text-accent" />
+          <span>© {new Date().getFullYear()} Shreya Mishra. Designed as an Interactive BI Data Product.</span>
         </div>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 font-semibold">
           <a href="#dashboard" className="hover:text-accent transition-colors">Top</a>
+          <a href="#experience" className="hover:text-accent transition-colors">Experience</a>
           <a href="#projects" className="hover:text-accent transition-colors">Projects</a>
           <a href="#skills" className="hover:text-accent transition-colors">Skills</a>
           <a href="#contact" className="hover:text-accent transition-colors">Contact</a>

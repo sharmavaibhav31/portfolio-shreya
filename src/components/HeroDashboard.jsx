@@ -149,14 +149,14 @@ export default function HeroDashboard() {
               <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-accent to-accentSecondary opacity-30 blur-md dark:opacity-50 transition-opacity" />
 
               {/* Headshot Card */}
-              <div className="relative w-52 h-52 sm:w-60 sm:h-60 rounded-3xl overflow-hidden bi-card border-2 border-accent/40 group flex items-center justify-center bg-bgSurface">
+              <div className="relative w-52 h-52 sm:w-60 sm:h-60 rounded-3xl overflow-hidden bi-card border-2 border-accent/40 group bg-bgSurface">
                 {!imgError ? (
-                  <picture>
+                  <picture className="w-full h-full block">
                     <source srcSet="/assets/profile.webp" type="image/webp" />
                     <img
                       src="/assets/profile.jpg"
                       alt={personalDetails.name}
-                      className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                       onError={() => setImgError(true)}
                     />
                   </picture>

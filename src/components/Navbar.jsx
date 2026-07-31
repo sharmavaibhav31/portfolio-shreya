@@ -39,7 +39,7 @@ export default function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-bgSurface/80 backdrop-blur-md border-b border-borderSubtle shadow-md py-3'
+          ? 'bg-bgSurface/85 backdrop-blur-md border-b border-borderSubtle shadow-md py-3'
           : 'bg-transparent py-5'
       }`}
     >
@@ -48,7 +48,7 @@ export default function Navbar() {
         <a
           href="#dashboard"
           onClick={(e) => scrollToSection(e, '#dashboard')}
-          className="flex items-center gap-2.5 group"
+          className="flex items-center gap-2.5 group focus-visible:ring-2 focus-visible:ring-accent/50 rounded-lg p-1"
         >
           <div className="w-9 h-9 rounded-lg bg-accent/15 border border-accent/30 flex items-center justify-center text-accent group-hover:scale-105 transition-transform duration-200">
             <BarChart2 className="w-5 h-5" />
@@ -71,7 +71,7 @@ export default function Navbar() {
               key={item.name}
               href={item.href}
               onClick={(e) => scrollToSection(e, item.href)}
-              className="px-3 py-1.5 text-sm font-medium text-textSecondary hover:text-accent hover:bg-accent/10 rounded-md transition-all duration-150"
+              className="px-3 py-1.5 text-sm font-medium text-textSecondary hover:text-accent hover:bg-accent/10 rounded-md transition-all duration-150 focus-visible:ring-2 focus-visible:ring-accent"
             >
               {item.name}
             </a>
@@ -80,24 +80,28 @@ export default function Navbar() {
 
         {/* Theme Switcher & Actions */}
         <div className="flex items-center gap-3">
-          {/* Sun / Moon Theme Toggle */}
+          {/* Animated Sun / Moon Theme Toggle */}
           <button
             onClick={toggleTheme}
             aria-label="Toggle Theme"
-            className="p-2 rounded-lg bg-bgSurface hover:bg-bgSurfaceHover border border-borderSubtle text-textPrimary transition-all duration-200 relative overflow-hidden focus:outline-none focus:ring-2 focus:ring-accent/50"
+            className="p-2 rounded-lg bg-bgSurface hover:bg-bgSurfaceHover border border-borderSubtle text-textPrimary transition-all duration-200 relative overflow-hidden focus-visible:ring-2 focus-visible:ring-accent"
           >
-            <motion.div
-              initial={false}
-              animate={{ rotate: isDark ? 0 : 180, scale: 1 }}
-              transition={{ duration: 0.3, ease: 'easeInOut' }}
-              className="flex items-center justify-center"
-            >
-              {isDark ? (
-                <Moon className="w-4 h-4 text-sky-400" />
-              ) : (
-                <Sun className="w-4 h-4 text-amber-500" />
-              )}
-            </motion.div>
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.div
+                key={isDark ? 'dark' : 'light'}
+                initial={{ y: -12, opacity: 0, rotate: -45 }}
+                animate={{ y: 0, opacity: 1, rotate: 0 }}
+                exit={{ y: 12, opacity: 0, rotate: 45 }}
+                transition={{ duration: 0.2 }}
+                className="flex items-center justify-center"
+              >
+                {isDark ? (
+                  <Moon className="w-4 h-4 text-sky-400" />
+                ) : (
+                  <Sun className="w-4 h-4 text-amber-500" />
+                )}
+              </motion.div>
+            </AnimatePresence>
           </button>
 
           {/* Live Status Chip */}
@@ -109,7 +113,7 @@ export default function Navbar() {
           {/* Mobile Menu Toggle Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 rounded-lg bg-bgSurface border border-borderSubtle text-textPrimary"
+            className="md:hidden p-2 rounded-lg bg-bgSurface border border-borderSubtle text-textPrimary focus-visible:ring-2 focus-visible:ring-accent"
             aria-label="Toggle Navigation Menu"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}

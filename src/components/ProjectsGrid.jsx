@@ -17,15 +17,15 @@ export default function ProjectsGrid() {
     : projectsData.filter(p => p.categoryTags.includes(activeFilter));
 
   return (
-    <section id="projects" className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-      {/* Section Header */}
+    <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      {/* Eyebrow Label & Section Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-4 border-b border-borderSubtle">
         <div>
           <div className="inline-flex items-center gap-2 text-accent font-mono text-xs font-semibold uppercase tracking-wider mb-1">
             <FolderGit2 className="w-3.5 h-3.5" />
             <span>03 // PROJECT REPOSITORY</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-textPrimary tracking-tight">
+          <h2 className="text-2xl sm:text-4xl font-heading font-extrabold text-textPrimary tracking-tight">
             Data Science & BI Dashboards
           </h2>
         </div>
@@ -34,8 +34,8 @@ export default function ProjectsGrid() {
         </p>
       </div>
 
-      {/* Filter Buttons Toolbar */}
-      <div className="flex flex-wrap items-center gap-2 mb-8 bg-bgSurface/60 p-2 rounded-xl border border-borderSubtle">
+      {/* Filter Buttons Toolbar with Animated Sliding Pill */}
+      <div className="flex flex-wrap items-center gap-2 mb-10 bg-bgSurface/70 p-2 rounded-xl border border-borderSubtle">
         <div className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono text-textMuted border-r border-borderSubtle mr-1 hidden sm:flex">
           <Filter className="w-3.5 h-3.5 text-accent" />
           <span>FILTER:</span>
@@ -47,30 +47,36 @@ export default function ProjectsGrid() {
             <button
               key={category}
               onClick={() => setActiveFilter(category)}
-              className={`px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-mono transition-all duration-200 ${
-                isActive
-                  ? 'bg-accent text-white font-semibold shadow-md shadow-accent/25'
-                  : 'text-textSecondary hover:text-textPrimary hover:bg-bgSurfaceHover'
-              }`}
+              className="relative px-4 py-2 rounded-lg text-xs sm:text-sm font-mono transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-accent"
             >
-              {category}
+              {isActive && (
+                <motion.div
+                  layoutId="activeFilterPill"
+                  className="absolute inset-0 bg-accent rounded-lg shadow-md shadow-accent/25"
+                  transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                />
+              )}
+              <span className={`relative z-10 font-semibold ${isActive ? 'text-white' : 'text-textSecondary hover:text-textPrimary'}`}>
+                {category}
+              </span>
             </button>
           );
         })}
       </div>
 
-      {/* Projects Grid Container */}
+      {/* Projects Grid Container with Layout Animation */}
       <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <AnimatePresence>
-          {filteredProjects.map((project) => (
+          {filteredProjects.map((project, idx) => (
             <motion.div
               key={project.id}
               layout
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.25 }}
-              className="bi-card rounded-xl p-6 flex flex-col justify-between group hover:-translate-y-1 transition-all duration-200"
+              transition={{ duration: 0.25, delay: idx * 0.05 }}
+              className="bi-card rounded-xl p-6 flex flex-col justify-between group"
             >
               <div>
                 {/* Header Chips & Link Icon */}
@@ -79,7 +85,7 @@ export default function ProjectsGrid() {
                     {project.categoryTags.map((tag) => (
                       <span
                         key={tag}
-                        className="text-[10px] font-mono px-2 py-0.5 rounded bg-accent/10 border border-accent/30 text-accent font-medium uppercase"
+                        className="text-[10px] font-mono px-2 py-0.5 rounded bg-accent/10 border border-accent/30 text-accent font-semibold uppercase"
                       >
                         {tag}
                       </span>
@@ -91,7 +97,7 @@ export default function ProjectsGrid() {
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-1.5 rounded-lg bg-bgPrimary hover:bg-accent/20 text-textSecondary hover:text-accent transition-colors"
+                      className="p-1.5 rounded-lg bg-bgPrimary hover:bg-accent/20 text-textSecondary hover:text-accent transition-colors focus-visible:ring-2 focus-visible:ring-accent"
                       title="View GitHub Repository"
                     >
                       <GithubIcon className="w-4 h-4" />
@@ -110,7 +116,7 @@ export default function ProjectsGrid() {
                 </p>
 
                 {/* Full Details */}
-                <p className="text-textMuted text-xs mb-4 line-clamp-3 bg-bgPrimary/50 p-3 rounded-lg border border-borderSubtle">
+                <p className="text-textMuted text-xs mb-4 line-clamp-3 bg-bgPrimary/60 p-3 rounded-lg border border-borderSubtle">
                   {project.details}
                 </p>
               </div>

@@ -5,7 +5,7 @@ import { useTheme } from '../context/ThemeContext';
 import { mapLocations } from '../data/portfolioData';
 import { Globe, MapPin, ExternalLink, Compass } from 'lucide-react';
 
-// Create custom DOM marker icon that respects theme colors
+// Custom DOM marker with pulsing ring
 const createCustomIcon = (isDark) => {
   const accentColor = isDark ? '#38BDF8' : '#0284C7';
   const bgColor = isDark ? '#141A24' : '#FFFFFF';
@@ -13,35 +13,48 @@ const createCustomIcon = (isDark) => {
   return L.divIcon({
     className: 'custom-leaflet-marker',
     html: `
-      <div style="
-        width: 32px;
-        height: 32px;
-        background-color: ${bgColor};
-        border: 2px solid ${accentColor};
-        border-radius: 50%;
-        box-shadow: 0 0 15px ${accentColor}80;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      ">
+      <div style="position: relative; width: 36px; height: 36px; display: flex; items-center; justify-content: center;">
+        <!-- Pulsing Ring -->
         <div style="
-          width: 12px;
-          height: 12px;
-          background-color: ${accentColor};
+          position: absolute;
+          inset: -4px;
           border-radius: 50%;
+          border: 2px solid ${accentColor};
+          opacity: 0.6;
+          animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
         "></div>
+        <!-- Marker Pin -->
+        <div style="
+          width: 28px;
+          height: 28px;
+          background-color: ${bgColor};
+          border: 2px solid ${accentColor};
+          border-radius: 50%;
+          box-shadow: 0 4px 15px ${accentColor}60;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: relative;
+          z-index: 10;
+        ">
+          <div style="
+            width: 10px;
+            height: 10px;
+            background-color: ${accentColor};
+            border-radius: 50%;
+          "></div>
+        </div>
       </div>
     `,
-    iconSize: [32, 32],
-    iconAnchor: [16, 16],
-    popupAnchor: [0, -16]
+    iconSize: [36, 36],
+    iconAnchor: [18, 18],
+    popupAnchor: [0, -18]
   });
 };
 
 export default function ProjectMap() {
   const { isDark } = useTheme();
 
-  // CartoDB tile layers for dark and light themes
   const darkTileUrl = 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
   const lightTileUrl = 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
   const tileAttribution = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>';
@@ -57,15 +70,15 @@ export default function ProjectMap() {
   };
 
   return (
-    <section id="map" className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-      {/* Section Header */}
+    <section id="map" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      {/* Eyebrow Label & Section Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-4 border-b border-borderSubtle">
         <div>
           <div className="inline-flex items-center gap-2 text-accent font-mono text-xs font-semibold uppercase tracking-wider mb-1">
             <Globe className="w-3.5 h-3.5" />
             <span>06 // GEOSPATIAL DISTRIBUTION</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-textPrimary tracking-tight">
+          <h2 className="text-2xl sm:text-4xl font-heading font-extrabold text-textPrimary tracking-tight">
             Geographic Footprint & Work Locations
           </h2>
         </div>
@@ -78,7 +91,7 @@ export default function ProjectMap() {
       <div className="bi-card rounded-2xl p-4 sm:p-6 overflow-hidden">
         <div className="h-[420px] w-full rounded-xl overflow-hidden relative z-0">
           <MapContainer
-            center={[20.5937, 78.9629]} // Centered on India
+            center={[20.5937, 78.9629]}
             zoom={5}
             scrollWheelZoom={false}
             className="w-full h-full"
@@ -113,7 +126,7 @@ export default function ProjectMap() {
                     <a
                       href={`#${loc.linkSection}`}
                       onClick={(e) => scrollToSection(e, loc.linkSection)}
-                      className="inline-flex items-center gap-1 text-[11px] font-mono text-accent hover:underline pt-1"
+                      className="inline-flex items-center gap-1 text-[11px] font-mono text-accent hover:underline pt-1 focus-visible:ring-2 focus-visible:ring-accent"
                     >
                       <span>Jump to section</span>
                       <ExternalLink className="w-3 h-3" />

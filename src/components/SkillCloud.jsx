@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { skillsGrouped } from '../data/portfolioData';
-import { Cpu, Info, CheckCircle2 } from 'lucide-react';
+import { Cpu, Info } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function SkillCloud() {
@@ -19,15 +19,15 @@ export default function SkillCloud() {
   };
 
   return (
-    <section id="skills" className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-      {/* Section Header */}
+    <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      {/* Eyebrow Label & Section Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 pb-4 border-b border-borderSubtle">
         <div>
           <div className="inline-flex items-center gap-2 text-accent font-mono text-xs font-semibold uppercase tracking-wider mb-1">
             <Cpu className="w-3.5 h-3.5" />
             <span>04 // SKILL MATRIX</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-textPrimary tracking-tight">
+          <h2 className="text-2xl sm:text-4xl font-heading font-extrabold text-textPrimary tracking-tight">
             Technical Stack & Tooling Cloud
           </h2>
         </div>
@@ -39,8 +39,12 @@ export default function SkillCloud() {
       {/* Skill Categories Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {skillsGrouped.map((catGroup, cIdx) => (
-          <div
+          <motion.div
             key={catGroup.category}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.3, delay: cIdx * 0.08 }}
             className="bi-card rounded-xl p-6 flex flex-col justify-between"
           >
             <div>
@@ -54,8 +58,10 @@ export default function SkillCloud() {
 
               {/* Tag Cloud Pills */}
               <div className="flex flex-wrap gap-2.5">
-                {catGroup.skills.map((skill) => {
+                {catGroup.skills.map((skill, sIdx) => {
                   const isHovered = activeSkill?.name === skill.name;
+                  const isFeatured = skill.size === 'lg';
+
                   return (
                     <div
                       key={skill.name}
@@ -64,9 +70,11 @@ export default function SkillCloud() {
                       onMouseLeave={() => setActiveSkill(null)}
                     >
                       <motion.button
+                        animate={isFeatured ? { y: [0, -3, 0] } : {}}
+                        transition={isFeatured ? { duration: 3 + (sIdx % 3), repeat: Infinity, ease: "easeInOut" } : {}}
                         whileHover={{ scale: 1.05, y: -2 }}
                         whileTap={{ scale: 0.95 }}
-                        className={`rounded-xl border transition-all duration-200 cursor-pointer text-left ${getSizeClasses(
+                        className={`rounded-xl border transition-all duration-200 cursor-pointer text-left focus-visible:ring-2 focus-visible:ring-accent ${getSizeClasses(
                           skill.size
                         )} ${isHovered ? 'ring-2 ring-accent shadow-lg shadow-accent/20' : ''}`}
                       >
@@ -103,7 +111,7 @@ export default function SkillCloud() {
                 )}
               </AnimatePresence>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </section>

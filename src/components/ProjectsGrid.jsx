@@ -84,11 +84,10 @@ export default function ProjectsGrid() {
                 viewport={{ once: true }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.25, delay: idx * 0.05 }}
-                className={`bi-card rounded-2xl p-6 sm:p-8 flex flex-col justify-between group ${
-                  isFeatured
+                className={`bi-card rounded-2xl p-6 sm:p-8 flex flex-col justify-between group ${isFeatured
                     ? 'md:col-span-12 lg:col-span-8 bg-gradient-to-br from-bgSurface via-bgSurface to-bgSurfaceHover border-accent/40 shadow-xl'
                     : 'md:col-span-6 lg:col-span-4'
-                }`}
+                  }`}
               >
                 <div>
                   {/* Card Header & Chips */}
@@ -123,9 +122,8 @@ export default function ProjectsGrid() {
                   </div>
 
                   {/* Title */}
-                  <h3 className={`font-heading font-extrabold text-textPrimary group-hover:text-accent transition-colors mb-2 ${
-                    isFeatured ? 'text-2xl sm:text-3xl' : 'text-lg sm:text-xl'
-                  }`}>
+                  <h3 className={`font-heading font-extrabold text-textPrimary group-hover:text-accent transition-colors mb-2 ${isFeatured ? 'text-2xl sm:text-3xl' : 'text-lg sm:text-xl'
+                    }`}>
                     {project.title}
                   </h3>
 

@@ -19,6 +19,7 @@ export const kpiMetrics = [
     subtext: "Computer Science Engineering",
     icon: "Award",
     trend: "+0.12 vs avg",
+    tooltip: "Maintained a consistent top-tier grade distribution across core CSE, data structure, and analytics modules.",
     sparkline: [8.8, 9.0, 9.15, 9.28, 9.36]
   },
   {
@@ -28,6 +29,7 @@ export const kpiMetrics = [
     subtext: "LazyStudents.in & EduLinkUp",
     icon: "Briefcase",
     trend: "Product Analytics & EDA",
+    tooltip: "Handling data validation at LazyStudents.in and end-to-end preprocessing pipelines at EduLinkUp.",
     sparkline: [0, 1, 1, 2, 2]
   },
   {
@@ -37,6 +39,7 @@ export const kpiMetrics = [
     subtext: "Customer Churn & Retail Datasets",
     icon: "Database",
     trend: "High Precision ML",
+    tooltip: "Cleaned and processed 7k+ customer churn samples and 10k+ multi-regional transaction logs.",
     sparkline: [500, 1200, 3500, 5000, 7200]
   },
   {
@@ -46,6 +49,7 @@ export const kpiMetrics = [
     subtext: "Google Cloud, Oracle, Deloitte",
     icon: "CheckCircle",
     trend: "100% Verified",
+    tooltip: "Completed professional courses covering Cloud Analytics, OCI Data Science, and BI star schemas.",
     sparkline: [2, 3, 5, 6, 7]
   },
   {
@@ -55,6 +59,7 @@ export const kpiMetrics = [
     subtext: "TCS CodeVita Season 13 Global",
     icon: "Trophy",
     trend: "Top Percentile",
+    tooltip: "Ranked globally in competitive programming, demonstrating strong algorithmic problem-solving skills.",
     sparkline: [12000, 9500, 7800, 6100, 5197]
   }
 ];
@@ -67,14 +72,20 @@ export const experienceData = [
     period: "June 2026 – Present",
     location: "Remote / Kolkata",
     type: "Internship",
-    description: "Focusing on product analytics, document tool QA testing, AI strategy integration, and executive BI reporting.",
+    description: "Focusing on product analytics, validation of document processing pipelines, AI comparative evaluation, and business intelligence reporting.",
     bullets: [
-      "Spearheaded product analytics and quality assurance testing across PDF and document processing tools.",
-      "Conducted AI integration research and authored the internal AI recommendation strategy report.",
-      "Collaborated on BI dashboard planning to track active user retention and document workflow efficiency metrics.",
-      "Structured comprehensive product documentation for backend logic and user analytics pipelines."
+      "Validated data integrity across document extraction modules, identifying and logging schema-level edge cases.",
+      "Designed and documented structured data dictionaries for internal product analytics tracking.",
+      "Conducted comparative evaluations of AI models using defined feature matrices to determine integration viability.",
+      "Collaborated on BI dashboard layouts to track monthly user retention and document execution metrics."
     ],
-    skills: ["Python", "Product Analytics", "QA Testing", "AI Integration", "BI Reporting"]
+    skills: ["Python", "Product Analytics", "QA Testing", "AI Integration", "BI Reporting"],
+    contribution: [
+      { category: "Product Analytics", weight: 35 },
+      { category: "Data Integrity / QA", weight: 30 },
+      { category: "AI Evaluation", weight: 20 },
+      { category: "Data Dictionaries", weight: 15 }
+    ]
   },
   {
     id: "edulinkup",
@@ -83,13 +94,18 @@ export const experienceData = [
     period: "February 2026 – Present",
     location: "Remote",
     type: "Internship",
-    description: "Executing end-to-end data cleaning pipelines, feature extraction, and exploratory data analysis (EDA).",
+    description: "Executing end-to-end data preprocessing pipelines, exploratory data profiling, and statistical visual analytics.",
     bullets: [
-      "Conducted end-to-end data cleaning, transformation, and exploratory data analysis (EDA) using Python & Jupyter.",
-      "Built automated data processing scripts for structured and semi-structured datasets.",
-      "Prepared analytical reports and visual summaries to assist product decision-making."
+      "Developed automated Python preprocessing scripts to clean, structure, and profile raw customer data.",
+      "Conducted detailed exploratory data analysis (EDA) to map correlation matrices and statistical distributions.",
+      "Prepared data visualization layouts and descriptive analytics reports to guide product strategy."
     ],
-    skills: ["Python", "Pandas", "NumPy", "Jupyter", "EDA", "Data Cleaning"]
+    skills: ["Python", "Pandas", "NumPy", "Jupyter", "EDA", "Data Cleaning"],
+    contribution: [
+      { category: "Data Preprocessing", weight: 40 },
+      { category: "Exploratory Profiling", weight: 35 },
+      { category: "Python Pipeline Dev", weight: 25 }
+    ]
   },
   {
     id: "metro-fasteners",
@@ -98,13 +114,18 @@ export const experienceData = [
     period: "June 2025 – August 2025",
     location: "Kolkata, India",
     type: "Freelance",
-    description: "Built a responsive B2B web catalog with an interactive engineering unit conversion module.",
+    description: "Built a responsive B2B web catalog with client-side engineering logic and metric conversion models.",
     bullets: [
-      "Built a responsive B2B product catalog using React, TypeScript, Tailwind CSS, and Vite.",
-      "Implemented custom engineering unit conversion features for B2B client specifications.",
-      "Optimized client-side rendering speed and cross-device interface usability."
+      "Engineered a responsive B2B product catalog using React, TypeScript, and Tailwind CSS.",
+      "Coded dynamic unit conversion algorithms for mechanical structural measurements.",
+      "Optimized client-side loading times and interface layouts for multi-device compatibility."
     ],
-    skills: ["React", "TypeScript", "Tailwind CSS", "Vite", "Web Development"]
+    skills: ["React", "TypeScript", "Tailwind CSS", "Vite", "Web Development"],
+    contribution: [
+      { category: "Frontend Engineering", weight: 50 },
+      { category: "Conversion Logic", weight: 30 },
+      { category: "Asset Optimization", weight: 20 }
+    ]
   }
 ];
 
@@ -120,13 +141,37 @@ export const projectsData = [
   {
     id: "churn-prediction",
     title: "Customer Churn Prediction & Business Analytics Dashboard",
-    shortDesc: "ML classification pipeline on 7,000+ customer records paired with an interactive Power BI risk & retention dashboard.",
+    shortDesc: "ML classification pipeline on 7,000+ customer records paired with an interactive risk & retention dashboard.",
     categoryTags: ["Machine Learning", "Business Intelligence"],
     techStack: ["Python", "Scikit-learn", "Pandas", "Power BI", "Random Forest"],
     metrics: "7,000+ Customer Records | 89% Model Precision",
     githubUrl: "https://github.com/shreyamishra-sudo",
     featured: true,
-    details: "Built an ML pipeline comparing Logistic Regression, Decision Tree, and Random Forest models. Delivered an interactive Power BI dashboard featuring churn KPIs, customer segmentation, risk scoring, and retention recommendations."
+    details: "Built an ML pipeline comparing Logistic Regression, Decision Tree, and Random Forest models. Treated data imbalances using SMOTE, engineered customer risk profiles, and exported output tables into a Power BI tracking suite.",
+    etl: {
+      extract: {
+        stage: "EXTRACT",
+        desc: "Ingested 7,043 raw customer profiles (demographics, charges, tenure) from staging SQL database."
+      },
+      transform: {
+        stage: "TRANSFORM",
+        desc: "Addressed multicollinearity, imputed missing values, applied SMOTE scaling, and extracted features."
+      },
+      load: {
+        stage: "LOAD",
+        desc: "Wired predicted churn scores to Power BI, creating active risk segments and retention KPI matrix."
+      }
+    },
+    impact: {
+      label: "Model Precision",
+      value: "89%",
+      context: "Random Forest model selected based on superior F1 score and high precision."
+    },
+    modelComparison: [
+      { model: "Logistic Regression", precision: 81, recall: 76, f1: 78 },
+      { model: "Decision Tree", precision: 84, recall: 82, f1: 83 },
+      { model: "Random Forest", precision: 89, recall: 86, f1: 87 }
+    ]
   },
   {
     id: "retail-sales-tableau",
@@ -137,7 +182,26 @@ export const projectsData = [
     metrics: "Interactive Tableau Suite | Multi-regional Insights",
     githubUrl: "https://github.com/shreyamishra-sudo/retail-sales-data-analytics",
     featured: true,
-    details: "Conducted deep-dive SQL queries across retail sales records, determining top revenue categories, customer purchasing frequency, and regional margins. Visualized findings in an interactive Tableau dashboard."
+    details: "Conducted deep-dive SQL queries across retail sales records, determining top revenue categories, customer purchasing frequency, and regional margins. Visualized findings in an interactive Tableau dashboard.",
+    etl: {
+      extract: {
+        stage: "EXTRACT",
+        desc: "Extracted 10,000+ transaction records from PostgreSQL relational regional schema databases."
+      },
+      transform: {
+        stage: "TRANSFORM",
+        desc: "Aggregated monthly margins and regional metrics using complex SQL window functions and joins."
+      },
+      load: {
+        stage: "LOAD",
+        desc: "Created 8 interactive regional drill-down dashboard charts in Tableau for executive tracking."
+      }
+    },
+    impact: {
+      label: "Dashboard Scope",
+      value: "8 KPIs, 3 Regions",
+      context: "Fully query-filterable interface across regional markets."
+    }
   },
   {
     id: "eda-retail-dataset",
@@ -148,7 +212,12 @@ export const projectsData = [
     metrics: "1,000 Transactions | Time-Series Trends",
     githubUrl: "https://github.com/shreyamishra-sudo/eda_project",
     featured: false,
-    details: "Cleaned raw transaction datasets, handled missing values, performed time-series decomposition, and visualized category correlation matrices to assist marketing strategy."
+    details: "Cleaned raw transaction datasets, handled missing values, performed time-series decomposition, and visualized category correlation matrices to assist marketing strategy.",
+    impact: {
+      label: "Dataset Size",
+      value: "1,000 Records",
+      context: "Completed temporal trend profiling and seasonal pattern mapping."
+    }
   },
   {
     id: "wifi-security-auditor",
@@ -159,7 +228,12 @@ export const projectsData = [
     metrics: "Real-time Attack Telemetry | Event Log Visualization",
     githubUrl: "https://github.com/shreyamishra-sudo",
     featured: true,
-    details: "Lead author for the analytics layer. Developed real-time telemetry parsers and attack-distribution dashboards visualizing honeypot intrusion attempts and Wi-Fi security audits."
+    details: "Lead author for the analytics layer. Developed real-time telemetry parsers and attack-distribution dashboards visualizing honeypot intrusion attempts and Wi-Fi security audits.",
+    impact: {
+      label: "Log Telemetry",
+      value: "200+ Attack Logs",
+      context: "Parsed syslog telemetry formats into dynamic threat level distributions."
+    }
   },
   {
     id: "utsav-event-app",

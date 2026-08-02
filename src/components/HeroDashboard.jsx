@@ -166,7 +166,7 @@ export default function HeroDashboard() {
                     <span className="text-xs font-mono text-textMuted font-normal mt-1">Data Analyst</span>
                   </div>
                 )}
-                
+
                 {/* Verified Overlay */}
                 <div className="absolute bottom-2 left-2 right-2 bg-bgSurface/90 backdrop-blur-md px-3 py-1.5 rounded-xl border border-borderSubtle flex items-center justify-between">
                   <div className="flex items-center gap-1.5">

@@ -1,64 +1,52 @@
-import React, { lazy, Suspense, useState, useEffect } from 'react';
+import React from 'react';
 import { ThemeProvider } from './context/ThemeContext';
 import ScrollProgress from './components/ScrollProgress';
 import Navbar from './components/Navbar';
-import HeroDashboard from './components/HeroDashboard';
-import Experience from './components/Experience';
-import ProjectsGrid from './components/ProjectsGrid';
-import SkillCloud from './components/SkillCloud';
-import Certifications from './components/Certifications';
-import SiteAnalytics from './components/SiteAnalytics';
+import OpeningHero from './components/OpeningHero';
+import AboutNarrative from './components/AboutNarrative';
+import FeaturedCaseStudy from './components/FeaturedCaseStudy';
+import AdditionalWork from './components/AdditionalWork';
+import ExperienceTimeline from './components/ExperienceTimeline';
+import SkillsReference from './components/SkillsReference';
+import Credentials from './components/Credentials';
 import ContactFooter from './components/ContactFooter';
-import MapSkeleton from './components/MapSkeleton';
-
-// Lazy-load heavier geospatial Map component for optimized initial page rendering
-const ProjectMap = lazy(() => import('./components/ProjectMap'));
 
 export default function App() {
-  const [is404, setIs404] = useState(false);
-
-  useEffect(() => {
-    // Check path for unexpected route testing
-    if (window.location.pathname !== '/' && window.location.pathname !== '') {
-      setIs404(true);
-    }
-  }, []);
-
-  if (is404) {
-    return (
-      <ThemeProvider>
-        <NotFound onReturn={() => { setIs404(false); window.history.pushState({}, '', '/'); }} />
-      </ThemeProvider>
-    );
-  }
-
   return (
     <ThemeProvider>
-      <div className="min-h-screen bg-bgPrimary text-textPrimary transition-colors duration-200 selection:bg-accent selection:text-white relative">
-        {/* Viewport Scroll Progress Bar */}
+      <div className="min-h-screen bg-bgPrimary text-textPrimary transition-colors duration-300 selection:bg-accent selection:text-white relative overflow-x-hidden font-sans">
+        {/* Top Scroll Indicator */}
         <ScrollProgress />
 
-        {/* Navigation */}
+        {/* Minimal Navigation */}
         <Navbar />
 
-        {/* Main Content Sections */}
-        <main className="space-y-4">
-          <HeroDashboard />
-          <Experience />
-          <ProjectsGrid />
-          <SkillCloud />
-          <Certifications />
+        {/* Narrative Flow */}
+        <main className="relative">
+          {/* 1. Opening Hero */}
+          <OpeningHero />
           
-          {/* Lazy Loaded Map Component with Suspense Skeleton */}
-          <Suspense fallback={<MapSkeleton />}>
-            <ProjectMap />
-          </Suspense>
-
-          <SiteAnalytics />
+          {/* 2. Intro / Narrative Bio */}
+          <AboutNarrative />
+          
+          {/* 3. Featured Case Study (Churn Prediction centerpiece) */}
+          <FeaturedCaseStudy />
+          
+          {/* 4. Additional Work asymmetric listing */}
+          <AdditionalWork />
+          
+          {/* 5. Experience Timeline in prose */}
+          <ExperienceTimeline />
+          
+          {/* 6. Technical reference directory */}
+          <SkillsReference />
+          
+          {/* 7. Certifications & Achievements index list */}
+          <Credentials />
+          
+          {/* 8. Contact form & links footer */}
+          <ContactFooter />
         </main>
-
-        {/* Footer */}
-        <ContactFooter />
       </div>
     </ThemeProvider>
   );

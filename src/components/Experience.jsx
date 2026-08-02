@@ -48,20 +48,18 @@ export default function Experience() {
             >
               {/* Numbered Station Badge */}
               <div
-                className={`absolute -left-[37px] sm:-left-[61px] top-1 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-xl font-mono font-bold text-xs sm:text-sm transition-all duration-300 ${
-                  isHovered
+                className={`absolute -left-[37px] sm:-left-[61px] top-1 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-xl font-mono font-bold text-xs sm:text-sm transition-all duration-300 ${isHovered
                     ? 'bg-accent text-white scale-110 shadow-lg shadow-accent/40 ring-4 ring-accent/20'
                     : 'bg-bgSurface border-2 border-accent/50 text-accent'
-                }`}
+                  }`}
               >
                 {stationNumber}
               </div>
 
               {/* Experience Card */}
               <div
-                className={`bi-card rounded-2xl p-6 sm:p-8 transition-all duration-300 ${
-                  isHovered ? 'border-accent/60 shadow-xl' : ''
-                }`}
+                className={`bi-card rounded-2xl p-6 sm:p-8 transition-all duration-300 ${isHovered ? 'border-accent/60 shadow-xl' : ''
+                  }`}
               >
                 {/* Header Row */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">

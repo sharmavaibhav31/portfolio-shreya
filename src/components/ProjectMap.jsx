@@ -7,7 +7,7 @@ import { Globe, MapPin, ExternalLink, Compass } from 'lucide-react';
 import EditorialReveal from './EditorialReveal';
 
 const createCustomIcon = (isDark) => {
-  const accentColor = isDark ? '#B8794F' : '#94532B'; // Editorial Terracotta colors
+  const accentColor = isDark ? '#B8794F' : '#9C5A34'; // Terracotta colors
   const bgColor = isDark ? '#211E26' : '#FFFFFF';
 
   return L.divIcon({

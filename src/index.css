@@ -4,43 +4,43 @@
 
 @layer base {
   :root {
-    /* Dark Theme: Near-Black Warm Ink (#17151B) + Muted Terracotta Accent (#B8794F) */
+    /* Dark Theme: Warm Ink (#17151B) + Muted Terracotta Accent (#B8794F) */
     --bg-primary: #17151B;
-    --bg-surface: #211E26;
+    --bg-surface: #201D24;
     --bg-surface-hover: #2D2933;
-    --text-primary: #F4F2EE;
-    --text-secondary: #A6A0AE;
+    --text-primary: #F2EEE8;
+    --text-secondary: #9C9490;
     --text-muted: #736E7A;
     --accent: #B8794F;
     --accent-muted: rgba(184, 121, 79, 0.15);
-    --border-subtle: rgba(244, 242, 238, 0.08);
+    --border-subtle: #302B31;
     --border-highlight: rgba(184, 121, 79, 0.4);
     --card-shadow: 0 12px 35px -8px rgba(0, 0, 0, 0.4);
     
-    --chart-grid: rgba(255, 255, 255, 0.05);
-    --chart-text: #A6A0AE;
-    --chart-tooltip-bg: #211E26;
+    --chart-grid: rgba(242, 238, 232, 0.04);
+    --chart-text: #9C9490;
+    --chart-tooltip-bg: #201D24;
     --chart-tooltip-border: rgba(184, 121, 79, 0.4);
   }
 
   html.light {
-    /* Light Theme: Warm, Soft Paper Off-White (#FAF8F5) + Deep Terracotta Accent (#94532B) */
-    --bg-primary: #FAF8F5;
+    /* Light Theme: Warm Off-White (#F7F3EC) + Deep Terracotta Accent (#9C5A34) */
+    --bg-primary: #F7F3EC;
     --bg-surface: #FFFFFF;
-    --bg-surface-hover: #F2EFEA;
-    --text-primary: #1F1B24;
-    --text-secondary: #5E5866;
-    --text-muted: #8E8896;
-    --accent: #94532B;
-    --accent-muted: rgba(148, 83, 43, 0.12);
-    --border-subtle: rgba(31, 27, 36, 0.08);
-    --border-highlight: rgba(148, 83, 43, 0.4);
-    --card-shadow: 0 6px 24px -4px rgba(31, 27, 36, 0.06);
+    --bg-surface-hover: #ECE8E0;
+    --text-primary: #1E1B20;
+    --text-secondary: #6B635E;
+    --text-muted: #8E8783;
+    --accent: #9C5A34;
+    --accent-muted: rgba(156, 90, 52, 0.12);
+    --border-subtle: #E6DDD1;
+    --border-highlight: rgba(156, 90, 52, 0.4);
+    --card-shadow: 0 6px 24px -4px rgba(30, 27, 32, 0.06);
 
-    --chart-grid: rgba(0, 0, 0, 0.06);
-    --chart-text: #5E5866;
+    --chart-grid: rgba(30, 27, 32, 0.06);
+    --chart-text: #6B635E;
     --chart-tooltip-bg: #FFFFFF;
-    --chart-tooltip-border: rgba(148, 83, 43, 0.35);
+    --chart-tooltip-border: rgba(156, 90, 52, 0.35);
   }
 
   body {
@@ -111,7 +111,10 @@
   height: 100vh;
   z-index: 9999;
   pointer-events: none;
-  opacity: 0.018; /* Extremely faint organic texture */
+  opacity: 0.018;
+  /* Extremely faint organic texture */
+  background-color: rgba(184, 121, 79, 0.03);
+  /* Faint warm-terracotta tint */
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
@@ -119,6 +122,7 @@
 .hover-underline-editorial {
   position: relative;
 }
+
 .hover-underline-editorial::after {
   content: '';
   position: absolute;
@@ -131,6 +135,7 @@
   transform-origin: bottom right;
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
+
 .hover-underline-editorial:hover::after {
   transform: scaleX(1);
   transform-origin: bottom left;

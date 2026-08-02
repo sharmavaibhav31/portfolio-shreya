@@ -1,10 +1,12 @@
-import React, { useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowDown } from 'lucide-react';
 import { personalDetails } from '../data/portfolioData';
+import AskMeAnything from './AskMeAnything';
 
 export default function OpeningHero() {
   const containerRef = useRef(null);
+  const [isOpen, setIsOpen] = useState(false);
   
   // Track scroll relative to hero section for parallax effects
   const { scrollYProgress } = useScroll({
@@ -17,20 +19,56 @@ export default function OpeningHero() {
   const yPhoto = useTransform(scrollYProgress, [0, 1], [0, -30]);
   const opacityFade = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
+  const [isScrolledPast, setIsScrolledPast] = useState(false);
+
+  // Track if visitor has scrolled past the hero section
+  useEffect(() => {
+    const unsubscribe = scrollYProgress.on("change", (latest) => {
+      setIsScrolledPast(latest > 0.85);
+    });
+    return () => unsubscribe();
+  }, [scrollYProgress]);
+
+  const isVisible = isOpen && !isScrolledPast;
+
   return (
     <section 
       ref={containerRef}
       id="hero" 
       className="min-h-screen flex flex-col justify-between pt-32 pb-12 px-6 max-w-6xl mx-auto relative overflow-hidden"
     >
+      {/* Ask Me Anything Panel overlay */}
+      <AskMeAnything isOpen={isVisible} setIsOpen={setIsOpen} />
+
       {/* Editorial Content */}
       <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 items-center my-auto relative z-10">
         
-        {/* Typographic Headline */}
+        {/* Typographic Headline with Left Sidewall Support */}
         <motion.div 
           style={{ y: yText, opacity: opacityFade }}
-          className="md:col-span-7 flex flex-col justify-center"
+          className="md:col-span-7 flex flex-col justify-center relative pl-10 lg:pl-14 border-l border-borderSubtle/60"
         >
+          {/* Vertical "Ask Me Something" Sidebar Border Trigger */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="absolute -left-[1.5px] top-4 bottom-4 w-[2px] hidden lg:flex flex-col items-center justify-center cursor-pointer group z-30 select-none"
+            title="Ask Shreya a question"
+          >
+            {/* Active highlight line */}
+            <div className="absolute inset-y-0 left-0 w-[2px] bg-borderSubtle group-hover:bg-accent transition-colors duration-300" />
+            
+            {/* The rotated text label sitting over the line with background mask */}
+            <div className="bg-bgPrimary py-6 relative z-10 flex flex-col items-center gap-4">
+              <span 
+                className="text-[11px] font-mono uppercase tracking-widest text-textMuted group-hover:text-accent transition-colors duration-300 whitespace-nowrap"
+                style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
+              >
+                ask me something
+              </span>
+              <span className="w-1.5 h-1.5 rounded-full bg-accent/60 group-hover:bg-accent transition-colors duration-300" />
+            </div>
+          </button>
+          
           <motion.p 
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
@@ -74,10 +112,18 @@ export default function OpeningHero() {
             >
               Read her approach
             </a>
+            
+            <button
+              onClick={() => setIsOpen(true)}
+              className="text-sm font-sans font-semibold text-accent hover:underline transition-colors duration-200 cursor-pointer lg:hidden"
+            >
+              Ask me something
+            </button>
+
             <a
               href={personalDetails.resumeUrl}
               download
-              className="text-sm font-sans font-medium text-textMuted hover:text-textPrimary transition-colors duration-200"
+              className="text-sm font-sans font-medium text-textMuted hover:text-textPrimary transition-colors duration-200 hidden sm:inline"
             >
               Download Resume (PDF)
             </a>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import EditorialReveal from './EditorialReveal';
 
 export default function AboutNarrative() {
   return (
@@ -8,12 +9,16 @@ export default function AboutNarrative() {
       <div className="grid grid-cols-1 md:grid-cols-12 gap-8 mb-12">
         <div className="md:col-span-4">
           <span className="text-xs font-mono uppercase tracking-widest text-textMuted block mb-2">01 // INTRODUCTION</span>
-          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-textPrimary tracking-tight">
-            Approach & Perspective
-          </h2>
-          <p className="font-serif italic text-sm text-accent mt-2">
-            "An analyst must build arguments, not just compile tables."
-          </p>
+          <EditorialReveal>
+            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-textPrimary tracking-tight">
+              Approach & Perspective
+            </h2>
+          </EditorialReveal>
+          <EditorialReveal delay={0.15}>
+            <p className="font-serif italic text-sm text-accent mt-3">
+              “An analyst must build arguments, not just compile tables.”
+            </p>
+          </EditorialReveal>
         </div>
         
         {/* Editorial Narrative */}

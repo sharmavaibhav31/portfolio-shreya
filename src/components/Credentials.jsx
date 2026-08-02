@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { certifications, achievements } from '../data/portfolioData';
+import EditorialReveal from './EditorialReveal';
 
 export default function Credentials() {
   return (
@@ -8,9 +9,11 @@ export default function Credentials() {
       {/* Chapter Opener */}
       <div className="mb-16">
         <span className="text-xs font-mono uppercase tracking-widest text-textMuted block mb-2">06 // CREDENTIALS & ACHIEVEMENTS</span>
-        <h2 className="font-serif text-3xl sm:text-4xl font-bold text-textPrimary tracking-tight">
-          Verifications & Academic Honors
-        </h2>
+        <EditorialReveal>
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-textPrimary tracking-tight">
+            Verifications & Academic Honors
+          </h2>
+        </EditorialReveal>
         <p className="text-sm text-textSecondary mt-2 max-w-lg font-sans">
           Supporting credentials, competitive coding rankings, and leadership highlights.
         </p>

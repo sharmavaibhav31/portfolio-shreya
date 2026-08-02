@@ -1,12 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { experienceData } from '../data/portfolioData';
+import EditorialReveal from './EditorialReveal';
 
-// Reframe bullet-points into prose narrative
+// Reframe bullet-points into prose narrative with typographic detail (em-dashes)
 const proseDescriptions = {
-  lazystudents: "During my product analytics internship at LazyStudents.in, I worked closely with engineering to validate data integrity across document extraction models. This involved identifying schema anomalies, building test scripts to log edge-case failures, and defining structured data dictionaries to maintain analytics tracking alignment. Additionally, I built a comparative analysis framework to test alternative AI integrations, assessing their performance tradeoffs, and helped outline visual dashboards to monitor user retention.",
-  edulinkup: "At EduLinkUp, my focus was on the early stages of the data lifecycle. I developed automated preprocessing scripts in Python using Pandas and NumPy to ingest, clean, and profile raw customer datasets. By mapping correlations, distributions, and outliers in exploratory data profiling passes, I provided the descriptive analytics reports that helped shape product direction.",
-  "metro-fasteners": "As a freelance web developer, I built the client-facing catalog for Metro Fasteners using React, TypeScript, and Tailwind CSS. The technical challenge lay in coding client-side engineering conversion models that allow B2B clients to scale structural measurements instantly. I optimized components to ensure fast performance and full cross-device compatibility."
+  lazystudents: "During my product analytics internship at LazyStudents.in, I worked closely with engineering to validate data integrity across document extraction modules. This involved identifying schema anomalies, building test scripts to log edge-case failures, and defining structured data dictionaries to maintain analytics tracking alignment. Additionally, I built a comparative evaluation framework—assessing model accuracy and latency tradeoffs—to determine the integration viability of alternative AI systems.",
+  edulinkup: "At EduLinkUp, my focus was on the early stages of the data lifecycle. I developed automated preprocessing scripts in Python using Pandas and NumPy to clean and profile raw customer datasets. By mapping statistical correlations and outlier distributions in exploratory data profiling passes, I provided the descriptive reports that helped guide product direction.",
+  "metro-fasteners": "As a freelance web developer, I built the client-facing catalog for Metro Fasteners using React, TypeScript, and Tailwind CSS. The technical challenge lay in coding client-side conversion models—allowing B2B clients to scale mechanical structural measurements instantly—while optimizing component routing for fast load times.",
 };
 
 export default function ExperienceTimeline() {
@@ -15,9 +16,11 @@ export default function ExperienceTimeline() {
       {/* Chapter Opener */}
       <div className="mb-16">
         <span className="text-xs font-mono uppercase tracking-widest text-textMuted block mb-2">04 // EXPERIENCE</span>
-        <h2 className="font-serif text-3xl sm:text-4xl font-bold text-textPrimary tracking-tight">
-          Professional Engagements & Internships
-        </h2>
+        <EditorialReveal>
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-textPrimary tracking-tight">
+            Professional Engagements & Internships
+          </h2>
+        </EditorialReveal>
         <p className="text-sm text-textSecondary mt-2 max-w-lg font-sans">
           Prose timeline of hands-on data parsing and client interface engineering.
         </p>

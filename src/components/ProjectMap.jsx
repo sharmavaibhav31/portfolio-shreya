@@ -4,10 +4,11 @@ import L from 'leaflet';
 import { useTheme } from '../context/ThemeContext';
 import { mapLocations } from '../data/portfolioData';
 import { Globe, MapPin, ExternalLink, Compass } from 'lucide-react';
+import EditorialReveal from './EditorialReveal';
 
 const createCustomIcon = (isDark) => {
-  const accentColor = isDark ? '#F59E0B' : '#D97706';
-  const bgColor = isDark ? '#1C1917' : '#FFFFFF';
+  const accentColor = isDark ? '#B8794F' : '#94532B'; // Editorial Terracotta colors
+  const bgColor = isDark ? '#211E26' : '#FFFFFF';
 
   return L.divIcon({
     className: 'custom-leaflet-marker',
@@ -18,16 +19,16 @@ const createCustomIcon = (isDark) => {
           inset: -4px;
           border-radius: 50%;
           border: 2px solid ${accentColor};
-          opacity: 0.6;
-          animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+          opacity: 0.4;
+          animation: ping 2.5s cubic-bezier(0, 0, 0.2, 1) infinite;
         "></div>
         <div style="
-          width: 28px;
-          height: 28px;
+          width: 24px;
+          height: 24px;
           background-color: ${bgColor};
           border: 2px solid ${accentColor};
           border-radius: 50%;
-          box-shadow: 0 4px 15px ${accentColor}60;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -35,8 +36,8 @@ const createCustomIcon = (isDark) => {
           z-index: 10;
         ">
           <div style="
-            width: 10px;
-            height: 10px;
+            width: 8px;
+            height: 8px;
             background-color: ${accentColor};
             border-radius: 50%;
           "></div>
@@ -67,31 +68,23 @@ export default function ProjectMap() {
   };
 
   return (
-    <section id="map" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative overflow-hidden">
-      {/* Background Section Watermark Anchor */}
-      <span className="absolute top-10 right-6 text-9xl font-heading font-black text-textPrimary/5 select-none pointer-events-none -z-10">
-        06
-      </span>
-
-      {/* Eyebrow Label & Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-4 border-b border-borderSubtle">
-        <div>
-          <div className="inline-flex items-center gap-2 text-accent font-mono text-xs font-semibold uppercase tracking-wider mb-1">
-            <Globe className="w-3.5 h-3.5" />
-            <span>06 // GEOSPATIAL DISTRIBUTION</span>
-          </div>
-          <h2 className="text-3xl sm:text-5xl font-heading font-extrabold text-textPrimary tracking-tight">
-            Geographic Footprint & Work Locations
+    <section id="map" className="py-24 px-6 border-t border-borderSubtle max-w-6xl mx-auto">
+      {/* Chapter Opener */}
+      <div className="mb-16">
+        <span className="text-xs font-mono uppercase tracking-widest text-textMuted block mb-2">07 // GEOGRAPHIC FOOTPRINT</span>
+        <EditorialReveal>
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold tracking-tight text-textPrimary">
+            Spatial Distribution & Hubs
           </h2>
-        </div>
-        <p className="text-textMuted text-xs sm:text-sm font-mono mt-2 md:mt-0">
-          KOLKATA // MANGALORE // REMOTE HUB
+        </EditorialReveal>
+        <p className="text-sm text-textSecondary mt-2 max-w-lg font-sans">
+          A physical breakdown of university studies, freelance operations, and remote analysis hubs.
         </p>
       </div>
 
-      {/* Map Card */}
-      <div className="bi-card rounded-3xl p-4 sm:p-6 overflow-hidden">
-        <div className="h-[420px] w-full rounded-2xl overflow-hidden relative z-0">
+      {/* Map Content Frame */}
+      <div className="border border-borderSubtle bg-bgSurface/40 p-4 shadow-xl">
+        <div className="h-[420px] w-full rounded border border-borderSubtle overflow-hidden relative z-0">
           <MapContainer
             center={[20.5937, 78.9629]}
             zoom={5}
@@ -111,8 +104,8 @@ export default function ProjectMap() {
                 icon={markerIcon}
               >
                 <Popup>
-                  <div className="p-1 space-y-2 min-w-[200px]">
-                    <div className="flex items-center gap-1.5 font-heading font-bold text-sm text-textPrimary">
+                  <div className="p-2 space-y-2 min-w-[200px] font-sans">
+                    <div className="flex items-center gap-1.5 font-serif font-bold text-sm text-textPrimary">
                       <MapPin className="w-4 h-4 text-accent" />
                       <span>{loc.name}</span>
                     </div>
@@ -128,7 +121,7 @@ export default function ProjectMap() {
                     <a
                       href={`#${loc.linkSection}`}
                       onClick={(e) => scrollToSection(e, loc.linkSection)}
-                      className="inline-flex items-center gap-1 text-[11px] font-mono text-accent hover:underline pt-1 focus-visible:ring-2 focus-visible:ring-accent"
+                      className="inline-flex items-center gap-1 text-[10px] font-mono text-accent hover:underline pt-1"
                     >
                       <span>Jump to section</span>
                       <ExternalLink className="w-3 h-3" />
@@ -140,21 +133,21 @@ export default function ProjectMap() {
           </MapContainer>
         </div>
 
-        {/* Location Chips Footer */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 mt-4 border-t border-borderSubtle">
+        {/* Location list index footer */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-6 mt-6 border-t border-borderSubtle">
           {mapLocations.map((loc) => (
             <div
               key={loc.id}
-              className="p-3.5 rounded-xl bg-bgPrimary/80 border border-borderSubtle flex items-start gap-3"
+              className="flex items-start gap-3"
             >
-              <div className="p-2 rounded-lg bg-accent/10 text-accent shrink-0 mt-0.5">
+              <div className="p-1.5 rounded bg-accent-muted text-accent shrink-0 mt-0.5">
                 <Compass className="w-4 h-4" />
               </div>
               <div>
-                <span className="text-xs font-heading font-bold text-textPrimary block">
+                <span className="text-sm font-serif font-bold text-textPrimary block">
                   {loc.name}
                 </span>
-                <span className="text-[11px] font-mono text-accent block mt-0.5">
+                <span className="text-[11px] font-mono text-accent block mt-0.5 uppercase tracking-wide">
                   {loc.role}
                 </span>
               </div>

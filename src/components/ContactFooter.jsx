@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { personalDetails } from '../data/portfolioData';
 import { ArrowUpRight, Check, Send } from 'lucide-react';
+import EditorialReveal from './EditorialReveal';
 
 export default function ContactFooter() {
   const [formData, setFormData] = useState({
@@ -47,9 +48,11 @@ export default function ContactFooter() {
         <div className="lg:col-span-5 space-y-8">
           <div>
             <span className="text-xs font-mono uppercase tracking-widest text-textMuted block mb-2">07 // CONTACT</span>
-            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-textPrimary">
-              Let's translate numbers into decisions.
-            </h2>
+            <EditorialReveal>
+              <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-textPrimary">
+                Let’s translate numbers into decisions.
+              </h2>
+            </EditorialReveal>
             <p className="text-sm text-textSecondary mt-4 max-w-sm font-sans leading-relaxed">
               I am open to Data Analyst and Data Science opportunities. Whether you have a project, an internship opening, or want to discuss prediction models—reach out.
             </p>

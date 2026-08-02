@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import { projectsData } from '../data/portfolioData';
+import EditorialReveal from './EditorialReveal';
 
 // Filter out the featured churn-prediction project
 const otherProjects = projectsData.filter(p => p.id !== 'churn-prediction');
@@ -13,9 +14,11 @@ export default function AdditionalWork() {
       <div className="mb-16 grid grid-cols-1 md:grid-cols-12 gap-6">
         <div className="md:col-span-5">
           <span className="text-xs font-mono uppercase tracking-widest text-textMuted block mb-2">03 // ADDITIONAL WORK</span>
-          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-textPrimary tracking-tight">
-            Selected Analysis & Development Logs
-          </h2>
+          <EditorialReveal>
+            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-textPrimary tracking-tight">
+              Selected Analysis & Development Logs
+            </h2>
+          </EditorialReveal>
         </div>
         <div className="md:col-span-7 flex items-end">
           <p className="text-sm text-textSecondary max-w-lg font-sans leading-relaxed">

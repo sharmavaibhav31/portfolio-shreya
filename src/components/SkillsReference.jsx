@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { skillsGrouped } from '../data/portfolioData';
+import EditorialReveal from './EditorialReveal';
 
 export default function SkillsReference() {
   // Let's divide categories for asymmetric column layout
@@ -40,9 +41,11 @@ export default function SkillsReference() {
       {/* Chapter Opener */}
       <div className="mb-16">
         <span className="text-xs font-mono uppercase tracking-widest text-textMuted block mb-2">05 // TECHNICAL MATRIX</span>
-        <h2 className="font-serif text-3xl sm:text-4xl font-bold text-textPrimary tracking-tight">
-          Tools & Capabilities Reference
-        </h2>
+        <EditorialReveal>
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-textPrimary tracking-tight">
+            Tools & Capabilities Reference
+          </h2>
+        </EditorialReveal>
         <p className="text-sm text-textSecondary mt-2 max-w-lg font-sans">
           A cataloged index of technical proficiencies, organized by analytical domain.
         </p>

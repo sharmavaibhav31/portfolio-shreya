@@ -1,23 +1,43 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowDown } from 'lucide-react';
 import { personalDetails } from '../data/portfolioData';
 
 export default function OpeningHero() {
+  const containerRef = useRef(null);
+  
+  // Track scroll relative to hero section for parallax effects
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"]
+  });
+
+  // Parallax calculations (transform values offset on scroll)
+  const yText = useTransform(scrollYProgress, [0, 1], [0, 60]);
+  const yPhoto = useTransform(scrollYProgress, [0, 1], [0, -30]);
+  const opacityFade = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+
   return (
-    <section id="hero" className="min-h-screen flex flex-col justify-between pt-32 pb-12 px-6 max-w-6xl mx-auto">
+    <section 
+      ref={containerRef}
+      id="hero" 
+      className="min-h-screen flex flex-col justify-between pt-32 pb-12 px-6 max-w-6xl mx-auto relative overflow-hidden"
+    >
       {/* Editorial Content */}
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 items-center my-auto">
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 items-center my-auto relative z-10">
         
         {/* Typographic Headline */}
-        <div className="md:col-span-7 flex flex-col justify-center">
+        <motion.div 
+          style={{ y: yText, opacity: opacityFade }}
+          className="md:col-span-7 flex flex-col justify-center"
+        >
           <motion.p 
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="text-xs font-mono tracking-widest text-accent uppercase mb-4"
           >
-            data analyst + data science enthusiast
+            data analyst — data science enthusiast
           </motion.p>
           
           <motion.h1 
@@ -35,7 +55,7 @@ export default function OpeningHero() {
             transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="mt-8 text-lg sm:text-xl text-textSecondary leading-relaxed prose-editorial"
           >
-            I translate complex datasets into clear, decision-ready narratives. Bridging structured engineering logic with clean data visuals.
+            I translate complex datasets into clear, decision-ready narratives—bridging structured engineering logic with clean data visuals.
           </motion.p>
           
           <motion.div 
@@ -62,12 +82,13 @@ export default function OpeningHero() {
               Download Resume (PDF)
             </a>
           </motion.div>
-        </div>
+        </motion.div>
         
-        {/* Simple Editorial Portrait */}
+        {/* Simple Editorial Portrait with scroll-linked parallax */}
         <motion.div 
-          initial={{ opacity: 0, scale: 0.98, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
+          style={{ y: yPhoto, opacity: opacityFade }}
+          initial={{ opacity: 0, scale: 0.98 }}
+          animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           className="md:col-span-5 flex justify-center md:justify-end"
         >
@@ -91,7 +112,7 @@ export default function OpeningHero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.8, duration: 0.8 }}
-        className="flex items-center gap-3 text-textMuted hover:text-accent transition-colors duration-200 cursor-pointer w-fit self-start"
+        className="flex items-center gap-3 text-textMuted hover:text-accent transition-colors duration-200 cursor-pointer w-fit self-start relative z-10"
         onClick={() => document.querySelector('#about')?.scrollIntoView({ behavior: 'smooth' })}
       >
         <span className="text-xs font-mono uppercase tracking-widest">scroll to read</span>

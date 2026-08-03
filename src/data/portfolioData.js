@@ -4,9 +4,9 @@ export const personalDetails = {
   subTitle: "Aspiring Data Analyst | Data Science Enthusiast | Computer Science Engineer",
   summary: "Passionate about transforming raw dataset metrics into strategic business intelligence. Experienced in building ML predictive models, interactive Power BI/Tableau dashboards, and clean data pipelines.",
   location: "Kolkata, India",
-  email: "shreyamishra.work@gmail.com",
+  email: "shreyamishra010605work@gmail.com",
   github: "https://github.com/shreyamishra-sudo",
-  linkedin: "https://linkedin.com/in/shreya-mishra-analytics",
+  linkedin: "https://www.linkedin.com/in/shreya-mishra01/",
   resumeUrl: "/assets/Shreya_Mishra_Resume.pdf",
   profileImage: "/assets/profile.jpg"
 };
@@ -145,7 +145,7 @@ export const projectsData = [
     categoryTags: ["Machine Learning", "Business Intelligence"],
     techStack: ["Python", "Scikit-learn", "Pandas", "Power BI", "Random Forest"],
     metrics: "7,000+ Customer Records | 89% Model Precision",
-    githubUrl: "https://github.com/shreyamishra-sudo",
+    githubUrl: "https://github.com/shreyamishra-sudo/customer-churn-analysis",
     featured: true,
     details: "Built an ML pipeline comparing Logistic Regression, Decision Tree, and Random Forest models. Treated data imbalances using SMOTE, engineered customer risk profiles, and exported output tables into a Power BI tracking suite.",
     etl: {

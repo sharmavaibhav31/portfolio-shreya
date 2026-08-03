@@ -166,6 +166,10 @@ export default function AskMeAnything({ isOpen, setIsOpen }) {
     if (!isOpen) return;
 
     const handleClickOutside = (event) => {
+      // Disable on mobile/tablet viewports to prevent click conflicts with bottom sheet overlay
+      if (window.innerWidth < 1024) {
+        return;
+      }
       if (panelRef.current && !panelRef.current.contains(event.target)) {
         // Skip closing if click was on the trigger button
         if (event.target.closest('[title="Ask Shreya a question"]') || event.target.closest('.lg\\:hidden')) {
@@ -215,7 +219,7 @@ export default function AskMeAnything({ isOpen, setIsOpen }) {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -20 }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed left-6 top-[12%] w-[400px] max-h-[82vh] bg-bgSurface border border-borderSubtle shadow-2xl p-5 flex flex-col z-40 rounded select-none font-sans"
+            className="fixed left-6 top-[12%] w-[400px] max-h-[82vh] bg-bgSurface border border-borderSubtle shadow-2xl p-5 flex flex-col z-40 rounded select-none font-sans hidden lg:flex"
           >
             {/* Header */}
             <div className="flex justify-between items-center border-b border-borderSubtle pb-3 mb-3">
@@ -299,7 +303,7 @@ export default function AskMeAnything({ isOpen, setIsOpen }) {
               animate={{ opacity: 0.4 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsOpen(false)}
-              className="fixed inset-0 bg-black md:hidden z-40"
+              className="fixed inset-0 bg-black lg:hidden z-40"
             />
             
             {/* Sheet */}
@@ -308,7 +312,7 @@ export default function AskMeAnything({ isOpen, setIsOpen }) {
               animate={{ y: 0 }}
               exit={{ y: '100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 220 }}
-              className="fixed inset-x-0 bottom-0 max-h-[80vh] bg-bgSurface border-t border-borderSubtle shadow-2xl p-6 rounded-t-2xl md:hidden z-50 flex flex-col font-sans"
+              className="fixed inset-x-0 bottom-0 max-h-[80vh] bg-bgSurface border-t border-borderSubtle shadow-2xl p-6 rounded-t-2xl lg:hidden z-50 flex flex-col font-sans"
             >
               {/* Drawer handle indicator */}
               <div className="w-12 h-1 bg-borderSubtle rounded-full mx-auto mb-4" />

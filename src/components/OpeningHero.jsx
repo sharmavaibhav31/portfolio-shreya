@@ -21,10 +21,12 @@ export default function OpeningHero() {
 
   const [isScrolledPast, setIsScrolledPast] = useState(false);
 
-  // Track if visitor has scrolled past the hero section
+  // Track if visitor has scrolled past the hero section (desktop only)
   useEffect(() => {
     const unsubscribe = scrollYProgress.on("change", (latest) => {
-      setIsScrolledPast(latest > 0.85);
+      if (window.innerWidth >= 1024) {
+        setIsScrolledPast(latest > 0.85);
+      }
     });
     return () => unsubscribe();
   }, [scrollYProgress]);
